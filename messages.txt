@@ -1,2 +1,41 @@
 Чтобы присоединиться к видеовстрече, нажмите на эту ссылку: https://meet.google.com/brd-xiet-xst
 Чтобы присоединиться к встрече по телефону, наберите номер +1 786-886-2616 и введите этот PIN-код: 326 837 303#
+void bubble_sort(int* A,int *B, int n){
+    for(int i=1; i<n; i++){
+        for(int j=n-1; j>=i; j--){
+            if (A[j]<A[j-1]){
+                int temp =A[j];
+                A[j] = A[j-1];
+                A[j-1] = temp;
+                temp =B[j];
+                B[j] = B[j-1];
+                B[j-1] = temp;
+            }if((A[j-1]== A[j])&&(B[j]<B[j-1])){
+
+            }
+        }
+    }
+}
+
+int* kWeakestRows(int** mat, int matSize, int* matColSize, int k,int* returnSize) {
+int helpArray[matSize];
+    for(int i = 0; i < matSize; i++){
+        helpArray[i] = 0;
+        for(int j = 0; j < matColSize[i]; j++){
+            if(mat[i][j] == 1){
+                helpArray[i]+=1;
+            }
+        }
+    }
+    int sortArray[matSize];
+    for(int a = 0; a < matSize-1; a++){
+        sortArray[a] = a;
+    }
+    bubble_sort(helpArray,sortArray,matSize);
+    int* res = malloc(sizeof(int)* k);
+    for(int i = 0; i < k; i++){
+        res[i] = sortArray[i];
+    }
+    *returnSize = k;
+    return res;
+}
